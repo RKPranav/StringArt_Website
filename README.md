@@ -13,13 +13,6 @@ The application is structured into several key sections to provide a complete us
 - **Testimonials**: Customer reviews and feedback to build trust.
 - **Contact**: A functional contact section, including a direct WhatsApp integration for quick inquiries and orders.
 
-## 🛠️ Technologies Used
-
-- **[React](https://react.dev/)**: Frontend library for building the user interface.
-- **[Vite](https://vitejs.dev/)**: Next-generation frontend tooling for blazing fast development.
-- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for rapid, responsive styling.
-- **[Framer Motion](https://www.framer.com/motion/)**: Production-ready animation library for React to create smooth, dynamic interactions.
-- **[Lucide React](https://lucide.dev/)**: Beautiful, consistent icon set.
 
 ## 🚀 Getting Started
 
@@ -31,41 +24,20 @@ You need to have Node.js and npm (or yarn/pnpm) installed on your system.
 
 ### Installation
 
-1. **Clone the repository** (if you haven't already):
-   ```bash
-   git clone https://github.com/RKPranav/StringArt_Website.git
-   cd string_art
-   ```
 
-2. **Install dependencies**:
+
+ **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Run the development server**:
+ **Run the development server**:
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**:
-   Navigate to the URL provided in your terminal (usually `http://localhost:5173`) to view the application.
 
-## 📂 Project Structure
 
-```text
-string_art/
-├── public/               # Static assets like images and favicons
-│   └── Image/            # String art gallery images
-├── src/
-│   ├── assets/           # React component specific assets
-│   ├── components/       # Reusable React components (Hero, Gallery, Contact, etc.)
-│   ├── App.jsx           # Main application layout and routing
-│   ├── index.css         # Global Tailwind directives and styles
-│   └── main.jsx          # React entry point
-├── package.json          # Project dependencies and scripts
-├── tailwind.config.js    # Tailwind CSS configuration
-└── vite.config.js        # Vite configuration
-```
 
 ## 🌐 Deployment
 
