@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gold-500: #d4af37;
+  --color-gold-600: #c5a017;
+  --color-dark-800: #1a1a1a;
+  --color-dark-900: #0a0a0a;
+}
+
+body {
+  background-color: #fdfbf7;
+  color: #1a1a1a;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  overflow-x: hidden;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #1a1a1a, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.neon-glow:hover {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+}
