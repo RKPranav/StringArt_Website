@@ -69,7 +69,7 @@ export default function Contact() {
                 alt="Instagram Logo" 
                 className="w-6 h-6"
               />
-              <span className="font-semibold">Instagram</span>
+              <span className="font-semibold">vr_kreates</span>
             </a>
           </div>
         </div>

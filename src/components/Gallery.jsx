@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 const categories = ['All', 'Family Arts', 'Name Arts', 'Anniversary Gifts', 'Cartoon Arts'];
 
@@ -7,13 +8,24 @@ const galleryItems = [
   { id: 1, category: 'Anniversary Gifts', src: '/Image/img1.jpeg' },
   { id: 2, category: 'Anniversary Gifts', src: '/Image/img2.jpeg' },
   { id: 3, category: 'Family Arts', src: '/Image/img3.jpeg' },
-  { id: 4, category: 'Cartoon Arts', src: '/Image/img4.jpeg' },
+  { id: 4, category: 'Name Arts', src: '/Image/img4.jpeg' },
   { id: 5, category: 'Family Arts', src: '/Image/img5.jpeg' },
   { id: 6, category: 'Name Arts', src: '/Image/img6.jpeg' },
+  { id: 7, category: 'Anniversary Gifts', src: '/Image/img7.jpeg' },
+  { id: 8, category: 'Name Arts', src: '/Image/img8.jpeg' },
+  { id: 9, category: 'Family Arts', src: '/Image/img9.jpeg' },
+  { id: 10, category: 'Name Arts', src: '/Image/img10.jpeg' },
+  { id: 11, category: 'Cartoon Arts', src: '/Image/img11.jpeg' },
+  { id: 12, category: 'Name Arts', src: '/Image/img13.jpeg' },
+  { id: 13, category: 'Cartoon Arts', src: '/Image/img14.jpeg' },
+  { id: 14, category: 'Family Arts', src: '/Image/img16.jpeg' },
+  { id: 15, category: 'Name Arts', src: '/Image/img18.jpeg' },
+  { id: 16, category: 'Anniversary Gifts', src: '/Image/img19.jpeg' },
 ];
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('All');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const filteredItems = galleryItems.filter(
     item => activeTab === 'All' || item.category === activeTab
@@ -62,6 +74,7 @@ export default function Gallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4 }}
+                onClick={() => setSelectedImage(item)}
                 className="relative group rounded-2xl overflow-hidden glass aspect-square cursor-pointer"
               >
                 <img 
@@ -80,6 +93,38 @@ export default function Gallery() {
           </AnimatePresence>
         </motion.div>
       </div>
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8 cursor-pointer"
+          >
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50"
+            >
+              <X className="w-10 h-10" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              src={selectedImage.src}
+              alt={selectedImage.category}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.5)] cursor-default border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

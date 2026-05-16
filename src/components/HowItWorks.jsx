@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Upload, PenTool, Scissors, Gift } from 'lucide-react';
 
 const steps = [
-  { icon: Upload, title: "1. Send Your Idea", desc: "Upload your photo or share your custom name/design idea with us." },
-  { icon: PenTool, title: "2. We Design It", desc: "Our artists create a digital draft for your approval." },
-  { icon: Scissors, title: "3. Handcrafted", desc: "We meticulously hammer nails and weave strings to bring it to life." },
-  { icon: Gift, title: "4. Delivered", desc: "Securely packed and delivered straight to your doorstep." }
+  { icon: Upload, title: "1. Send Your Idea", desc: "Upload your photo or share your custom name/design idea with us.", image: "/Image/idea.png" },
+  { icon: PenTool, title: "2. We Design It", desc: "Our artists create a digital draft for your approval.", image: "/Image/design.jpg" },
+  { icon: Scissors, title: "3. Handcrafted", desc: "We meticulously hammer nails and weave strings to bring it to life.", image: "/Image/img3.jpeg" },
+  { icon: Gift, title: "4. Delivered", desc: "Securely packed and delivered straight to your doorstep.", image: "/Image/img4.jpeg" }
 ];
 
 export default function HowItWorks() {
@@ -54,7 +54,19 @@ export default function HowItWorks() {
                 <div className="w-6 h-6 rounded-full bg-white border-4 border-[var(--color-gold-500)] neon-glow" />
               </div>
 
-              <div className="flex-1 w-full hidden lg:block" />
+              <div className={`flex-1 w-full flex justify-center mt-8 lg:mt-0 ${idx % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="w-full max-w-md h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl relative border border-[var(--color-gold-500)]/20"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none"></div>
+                  <img 
+                    src={step.image} 
+                    alt={step.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
