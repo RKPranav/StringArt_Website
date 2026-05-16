@@ -21,6 +21,8 @@ const galleryItems = [
   { id: 14, category: 'Family Arts', src: '/Image/img16.jpeg' },
   { id: 15, category: 'Name Arts', src: '/Image/img18.jpeg' },
   { id: 16, category: 'Anniversary Gifts', src: '/Image/img19.jpeg' },
+  { id: 17, category: 'Name Arts', src: '/Image/img20.jpeg' },
+  { id: 18, category: 'Name Arts', src: '/Image/img21.jpeg' },
 ];
 
 export default function Gallery() {
