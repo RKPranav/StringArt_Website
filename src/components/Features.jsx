@@ -25,7 +25,7 @@ const itemVariants = {
 
 export default function Features() {
   return (
-    <section className="py-24 px-6 lg:px-20 relative overflow-hidden bg-white/50">
+    <section id="features" className="py-24 px-6 lg:px-20 relative overflow-hidden bg-white/50">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <motion.h2 

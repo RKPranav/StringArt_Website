@@ -10,7 +10,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 px-6 lg:px-20 relative bg-transparent">
+    <section id="how-it-works" className="py-24 px-6 lg:px-20 relative bg-transparent">
       {/* Decorative vertical line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[var(--color-gold-500)]/30 to-transparent hidden lg:block" />
 

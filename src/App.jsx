@@ -1,3 +1,4 @@
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Gallery from './components/Gallery';
@@ -10,6 +11,9 @@ function App() {
     <div className="min-h-screen text-gray-900 font-sans selection:bg-[var(--color-gold-500)] selection:text-white">
       {/* Global Background Elements */}
       <AnimatedBackground />
+
+      {/* Navigation Bar */}
+      <Navbar />
 
       {/* Main Content */}
       <main className="relative z-10">

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const categories = ['All', 'Family Arts', 'Name Arts', 'Anniversary Gifts', 'Cartoon Arts'];
 
@@ -28,13 +28,44 @@ const galleryItems = [
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('All');
   const [selectedImage, setSelectedImage] = useState(null);
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const filteredItems = galleryItems.filter(
     item => activeTab === 'All' || item.category === activeTab
   );
 
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 2);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 2);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, [filteredItems]);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { clientWidth } = scrollRef.current;
+      const scrollAmount = direction === 'left' ? -clientWidth * 0.75 : clientWidth * 0.75;
+      scrollRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section id="gallery" className="py-24 px-6 lg:px-20 min-h-screen">
+    <section id="gallery" className="py-24 px-6 lg:px-20 min-h-screen relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[var(--color-gold-500)]/5 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -50,7 +81,12 @@ export default function Gallery() {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveTab(cat)}
+              onClick={() => {
+                setActiveTab(cat);
+                if (scrollRef.current) {
+                  scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+              }}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === cat 
                   ? 'bg-[var(--color-gold-500)] text-black neon-glow' 
@@ -62,23 +98,54 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Masonry Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
-            {filteredItems.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4 }}
-                onClick={() => setSelectedImage(item)}
-                className="relative group rounded-2xl overflow-hidden glass aspect-square cursor-pointer"
-              >
+        {/* Slider Container with Navigation Arrows */}
+        <div className="relative group/arrows px-2">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
+            className={`absolute left-0 md:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${
+              canScrollLeft 
+                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30' 
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Scroll Left"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
+            className={`absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${
+              canScrollRight 
+                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30' 
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Scroll Right"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Horizontal Scrollable Carousel */}
+          <div
+            ref={scrollRef}
+            onScroll={checkScroll}
+            className="flex overflow-x-auto gap-6 scrollbar-none py-6 snap-x snap-mandatory scroll-smooth px-2"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item) => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  onClick={() => setSelectedImage(item)}
+                  className="w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[23vw] shrink-0 snap-start relative group rounded-2xl overflow-hidden glass aspect-square cursor-pointer"
+                >
                 <img 
                   src={item.src} 
                   alt={item.category} 
@@ -93,8 +160,9 @@ export default function Gallery() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
+    </div>
       {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
