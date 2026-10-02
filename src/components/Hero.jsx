@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const heroImages = [
-  '/Image/img1.jpeg',
-  '/Image/img2.jpeg',
-  '/Image/img3.jpeg',
-  '/Image/img4.jpeg',
-  '/Image/img5.jpeg',
-  '/Image/img6.jpeg',
-  '/Image/img7.jpeg',
-  '/Image/img8.jpeg'
+  `${import.meta.env.BASE_URL}Image/img1.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img2.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img3.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img4.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img5.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img6.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img7.jpeg`,
+  `${import.meta.env.BASE_URL}Image/img8.jpeg`
 ];
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -44,18 +44,18 @@ export default function Hero() {
           >
             HANDCRAFTED WITH LOVE
           </motion.div>
-          
+
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 leading-[1.1]">
             Turn Memories Into <br />
             <span className="text-gradient">String Art</span>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-gray-700 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
             Handcrafted personalized string art gifts made with love for couples, birthdays, anniversaries, and special moments.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-            <motion.button 
+            <motion.button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -63,7 +63,7 @@ export default function Hero() {
             >
               Order Now
             </motion.button>
-            <motion.button 
+            <motion.button
               onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -83,10 +83,10 @@ export default function Hero() {
         >
           <div className="relative rounded-2xl overflow-hidden glass p-4 neon-glow transform rotate-y-[-5deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-700 ease-out h-[500px]">
             <AnimatePresence mode="wait">
-              <motion.img 
+              <motion.img
                 key={currentImageIndex}
-                src={heroImages[currentImageIndex]} 
-                alt="Handcrafted String Art Showcase" 
+                src={heroImages[currentImageIndex]}
+                alt="Handcrafted String Art Showcase"
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -97,9 +97,9 @@ export default function Hero() {
             {/* Overlay gradient for aesthetics */}
             <div className="absolute inset-4 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-xl z-10" />
           </div>
-          
+
           {/* Floating badge */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
             className="absolute -bottom-6 -left-6 glass px-6 py-4 rounded-2xl border border-black/5 flex items-center gap-4"
