@@ -5,24 +5,24 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 const categories = ['All', 'Family Arts', 'Name Arts', 'Anniversary Gifts', 'Cartoon Arts'];
 
 const galleryItems = [
-  { id: 1, category: 'Anniversary Gifts', src: '/Image/img1.jpeg' },
-  { id: 2, category: 'Anniversary Gifts', src: '/Image/img2.jpeg' },
-  { id: 3, category: 'Family Arts', src: '/Image/img3.jpeg' },
-  { id: 4, category: 'Name Arts', src: '/Image/img4.jpeg' },
-  { id: 5, category: 'Family Arts', src: '/Image/img5.jpeg' },
-  { id: 6, category: 'Name Arts', src: '/Image/img6.jpeg' },
-  { id: 7, category: 'Anniversary Gifts', src: '/Image/img7.jpeg' },
-  { id: 8, category: 'Name Arts', src: '/Image/img8.jpeg' },
-  { id: 9, category: 'Family Arts', src: '/Image/img9.jpeg' },
-  { id: 10, category: 'Name Arts', src: '/Image/img10.jpeg' },
-  { id: 11, category: 'Cartoon Arts', src: '/Image/img11.jpeg' },
-  { id: 12, category: 'Name Arts', src: '/Image/img13.jpeg' },
-  { id: 13, category: 'Cartoon Arts', src: '/Image/img14.jpeg' },
-  { id: 14, category: 'Family Arts', src: '/Image/img16.jpeg' },
-  { id: 15, category: 'Name Arts', src: '/Image/img18.jpeg' },
-  { id: 16, category: 'Anniversary Gifts', src: '/Image/img19.jpeg' },
-  { id: 17, category: 'Name Arts', src: '/Image/img20.jpeg' },
-  { id: 18, category: 'Name Arts', src: '/Image/img21.jpeg' },
+  { id: 1, category: 'Anniversary Gifts', src: `${import.meta.env.BASE_URL}Image/img1.jpeg` },
+  { id: 2, category: 'Anniversary Gifts', src: `${import.meta.env.BASE_URL}Image/img2.jpeg` },
+  { id: 3, category: 'Family Arts', src: `${import.meta.env.BASE_URL}Image/img3.jpeg` },
+  { id: 4, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img4.jpeg` },
+  { id: 5, category: 'Family Arts', src: `${import.meta.env.BASE_URL}Image/img5.jpeg` },
+  { id: 6, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img6.jpeg` },
+  { id: 7, category: 'Anniversary Gifts', src: `${import.meta.env.BASE_URL}Image/img7.jpeg` },
+  { id: 8, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img8.jpeg` },
+  { id: 9, category: 'Family Arts', src: `${import.meta.env.BASE_URL}Image/img9.jpeg` },
+  { id: 10, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img10.jpeg` },
+  { id: 11, category: 'Cartoon Arts', src: `${import.meta.env.BASE_URL}Image/img11.jpeg` },
+  { id: 12, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img13.jpeg` },
+  { id: 13, category: 'Cartoon Arts', src: `${import.meta.env.BASE_URL}Image/img14.jpeg` },
+  { id: 14, category: 'Family Arts', src: `${import.meta.env.BASE_URL}Image/img16.jpeg` },
+  { id: 15, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img18.jpeg` },
+  { id: 16, category: 'Anniversary Gifts', src: `${import.meta.env.BASE_URL}Image/img19.jpeg` },
+  { id: 17, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img20.jpeg` },
+  { id: 18, category: 'Name Arts', src: `${import.meta.env.BASE_URL}Image/img21.jpeg` },
 ];
 
 export default function Gallery() {
@@ -87,11 +87,10 @@ export default function Gallery() {
                   scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
                 }
               }}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === cat 
-                  ? 'bg-[var(--color-gold-500)] text-black neon-glow' 
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === cat
+                  ? 'bg-[var(--color-gold-500)] text-black neon-glow'
                   : 'glass text-gray-600 hover:text-gray-900 hover:bg-black/5'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -104,11 +103,10 @@ export default function Gallery() {
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`absolute left-0 md:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${
-              canScrollLeft 
-                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30' 
+            className={`absolute left-0 md:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${canScrollLeft
+                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30'
                 : 'opacity-0 pointer-events-none'
-            }`}
+              }`}
             aria-label="Scroll Left"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -118,11 +116,10 @@ export default function Gallery() {
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${
-              canScrollRight 
-                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30' 
+            className={`absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full glass border border-black/5 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 ${canScrollRight
+                ? 'opacity-100 cursor-pointer text-gray-800 hover:bg-[var(--color-gold-500)] hover:text-black hover:border-[var(--color-gold-500)]/30'
                 : 'opacity-0 pointer-events-none'
-            }`}
+              }`}
             aria-label="Scroll Right"
           >
             <ChevronRight className="w-6 h-6" />
@@ -146,23 +143,23 @@ export default function Gallery() {
                   onClick={() => setSelectedImage(item)}
                   className="w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[23vw] shrink-0 snap-start relative group rounded-2xl overflow-hidden glass aspect-square cursor-pointer"
                 >
-                <img 
-                  src={item.src} 
-                  alt={item.category} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div>
-                    <h4 className="text-white font-semibold text-lg">{item.category}</h4>
-                    <p className="text-[var(--color-gold-500)] text-sm">View Details</p>
+                  <img
+                    src={item.src}
+                    alt={item.category}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                      <h4 className="text-white font-semibold text-lg">{item.category}</h4>
+                      <p className="text-[var(--color-gold-500)] text-sm">View Details</p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
-    </div>
       {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
@@ -173,7 +170,7 @@ export default function Gallery() {
             onClick={() => setSelectedImage(null)}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8 cursor-pointer"
           >
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 setSelectedImage(null);
